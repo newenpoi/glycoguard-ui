@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Glycoguard</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></head>
+<body>
+	<div class="container">
+		<h1>La prévention avant le coma glycémique !</h1>
+		<div class="row">
+			<div class="col-md-4 mx-auto mt-5 text-center">
+				<p th:text="${patient.forename}"></p>
+				<p th:text="${patient.name}" class="font-weight-bold"></p>
+				<p th:text="${patient.dob}"></p>
+			</div>
+		</div>
+		<div class="row" th:each="note : ${notes}">
+			<div class="col-md-4 mx-auto mt-5 text-center">
+				<p th:text="${note.note}"></p>
+			</div>
+		</div>
+	</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
