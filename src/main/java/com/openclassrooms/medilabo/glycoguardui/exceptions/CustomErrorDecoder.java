@@ -10,8 +10,8 @@ public class CustomErrorDecoder implements ErrorDecoder {
 	@Override
 	public Exception decode(String invoker, Response response) {
 		
-		if (response.status() >= 400 && response.status() <= 499) {
-			return new PatientBadRequestException("La requête n'a pu aboutir.");
+		if (invoker.contains("recupererPatient") && response.status() >= 400 && response.status() <= 499) {
+			return new PatientBadRequestException(String.format("La requête recupererPatient n'a pu aboutir (%s).", response.status()));
 		}
 		
 		return defaultErrorDecoder.decode(invoker, response);

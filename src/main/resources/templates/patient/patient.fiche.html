@@ -3,21 +3,42 @@
 <head>
 	<title>Glycoguard</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></head>
+	<link rel="stylesheet" th:href="@{/css/default.css}">
 <body>
-	<div class="container">
-		<h1>La prévention avant le coma glycémique !</h1>
-		<div class="row">
-			<div class="col-md-4 mx-auto mt-5 text-center">
-				<p th:text="${patient.forename}"></p>
-				<p th:text="${patient.name}" class="font-weight-bold"></p>
-				<p th:text="${patient.dob}"></p>
-			</div>
+	<div class="wrapper d-flex flex-column justify-content-center">
+		<h1 class="mb-5">La prévention avant le coma glycémique !</h1>
+		
+		<div class="infos mb-4">
+			<p class="mb-2"><span class="badge badge-dark" th:text="${evaluation}"></span></p>
+			
+			<p class="lh-sm">
+				<span th:text="${patient.name}" class="d-block font-weight-bold"></span>
+				<small th:text="${patient.forename}"></small>
+			</p>
+			
+			<p class="font-italic mt-2">Né le <span th:text="${patient.dob}"></span></p>
 		</div>
-		<div class="row" th:each="note : ${notes}">
-			<div class="col-md-4 mx-auto mt-5 text-center">
-				<p th:text="${note.note}"></p>
-			</div>
-		</div>
+		
+		<ul class="menu list-unstyled">
+			<li th:each="note : ${notes}" class="d-flex align-items-center mb-3">
+				<p th:text="${note.note}" class="note shadow-light w-100"></p>
+			</li>
+		</ul>
+		
+        <form th:action="@{/notes/add}" th:object="${note}" method="post" class="mb-4">
+            <input type="hidden" th:value="${patient.id}" th:attr="name='patId'" />
+            <input type="hidden" th:value="${patient.name}" th:attr="name='patient'" />
+            
+            <div class="form-group">
+                <label for="note" class="infos">Ajouter une note au patient :</label>
+                <textarea th:field="*{note}" id="note" class="form-control" rows="3" placeholder="La note ne peut dépasser 255 caractères..."></textarea>
+            </div>
+            
+            <div class="d-flex">
+            	<button type="submit" class="btn btn-primary flex-grow-1 mr-2">AJOUTER</button>
+            	<a href="/" class="btn btn-dark text-white flex-grow-1" title="Revenir aux Patients">RETOUR</a>
+            </div>
+        </form>
 	</div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

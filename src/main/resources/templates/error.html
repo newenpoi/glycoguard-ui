@@ -2,19 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Glycoguard</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></head>
 	<link rel="stylesheet" th:href="@{/css/default.css}">
-</head>
 <body>
 	<div class="wrapper d-flex flex-column justify-content-center">
-		<h1 class="py-3">La prévention avant le coma glycémique !</h1>
-		<div class="search-container">
+		<h1 class="mb-5">Il semblerait que quelque chose ne se soit pas passé comme prévu !</h1>
+		
+		<div class="infos mb-4">
+			<p class="mb-2"><span class="badge badge-dark" th:text="${error}"></span></p>
 		</div>
-		<ul class="menu list-unstyled">
-			<li th:each="patient : ${patients}" class="d-flex align-items-center mb-3">
-				<a th:href="@{|/patients/${patient.id}|}" class="text-info flex-grow-1" th:text="${patient.name}"></a>
-			</li>
-		</ul>
 	</div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
