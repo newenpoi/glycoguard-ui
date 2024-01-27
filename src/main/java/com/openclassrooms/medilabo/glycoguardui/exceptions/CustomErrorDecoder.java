@@ -10,11 +10,18 @@ public class CustomErrorDecoder implements ErrorDecoder {
 	@Override
 	public Exception decode(String invoker, Response response) {
 		
-		if (invoker.contains("recupererPatient") && response.status() >= 400 && response.status() <= 499) {
-			return new PatientBadRequestException(String.format("La requête recupererPatient n'a pu aboutir (%s).", response.status()));
+		if (response.status() == 404) {
+			return new NotFoundException(String.format("La ressource demandée est introuvable (%s).", response.status()));
+		}
+		
+		if (response.status() >= 400 && response.status() <= 499) {
+			return new BadRequestException(String.format("La requête n'a pu aboutir (%s).", response.status()));
+		}
+		
+		if (response.status() >= 500 && response.status() <= 599) {
+			return new CustomServerException(String.format("Le serveur n'a pas pu traiter la requête (%s).", response.status()));
 		}
 		
 		return defaultErrorDecoder.decode(invoker, response);
 	}
-
 }
