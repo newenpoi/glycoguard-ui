@@ -9,7 +9,7 @@
 		<h1 class="mb-5">Il semblerait que quelque chose ne se soit pas passé comme prévu !</h1>
 		
 		<div class="infos mb-4">
-			<p class="mb-2"><span class="badge badge-dark" th:text="${error}"></span></p>
+			<p class="mb-2" th:if="${error != null and !error.isEmpty()}"><span class="badge badge-dark" th:if="${error != null and !error.isEmpty()}"th:text="${error}"></span></p>
 		</div>
 	</div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
