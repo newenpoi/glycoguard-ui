@@ -49,12 +49,19 @@ public class PatientController {
 
 		model.addAttribute("patient", patient);
 		model.addAttribute("notes", notes);
-		model.addAttribute("evaluation", evaluation);
+		model.addAttribute("evaluation", evaluation.getDescription());
 		
 		// Permet d'ajouer une nouvelle note dans la fiche.
 		model.addAttribute("note", new Note());
 
 		return "patient/patient.fiche";
+	}
+	
+	@PostMapping("/patients/{id}/update")
+	public String updatePatient(@Valid Patient patient, BindingResult result, Model model, RedirectAttributes rattr) {
+		Patient updatedPatient = gatewayProxy.updatePatient(patient.getId(), patient);
+		
+		return "redirect:/patients/" + updatedPatient.getId();
 	}
 	
 	@PostMapping("/notes/add")

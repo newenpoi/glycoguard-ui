@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,6 +24,9 @@ public interface GatewayProxy {
 
     @GetMapping("/patients/{id}")
     Patient recupererPatient(@PathVariable("id") Long idPatient);
+    
+    @PutMapping("/patients/{id}/update")
+    Patient updatePatient(@PathVariable("id") Long idPatient, @RequestBody Patient patient);
     
 	@GetMapping("/notes/{id}")
     List<Note> recupererNotesPatient(@RequestParam("id") Long numPatient);
