@@ -16,7 +16,7 @@ import com.openclassrooms.medilabo.glycoguardui.beans.Note;
 import com.openclassrooms.medilabo.glycoguardui.beans.Patient;
 import com.openclassrooms.medilabo.glycoguardui.beans.RiskLevel;
 
-@FeignClient(name = "microservice-gateway", url = "localhost:9103")
+@FeignClient(name = "microservice-gateway", url = "glycoguard-gateway:9103")
 public interface GatewayProxy {
 	
     @GetMapping("/patients")
