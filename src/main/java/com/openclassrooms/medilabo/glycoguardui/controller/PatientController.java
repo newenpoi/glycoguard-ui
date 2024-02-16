@@ -30,12 +30,8 @@ public class PatientController {
         // Appel au proxy avec les paramètres requis (numéro de page et tri).
         ResponseEntity<Page<Patient>> response = gatewayProxy.recupererPatients(0, "name");
         
-        // Liste des patients vierge.
-        // List<PatientBean> patients = Collections.emptyList();
+        // Si response est un code no-content, response.getBody() vaut null et getContent() ne sera jamais appelé.
         
-        // Vérification de la réponse et extraction des données.
-        // if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) patients = response.getBody().getContent();
-
         // Ajout de l'attribut et affichage.
         model.addAttribute("patients", response.getBody().getContent());
         return "patient/patients";

@@ -8,6 +8,10 @@ import com.openclassrooms.medilabo.glycoguardui.exceptions.CustomErrorDecoder;
 @Configuration
 public class FeignExceptionConfig {
 
+	/**
+	 * On injecte notre decoder personnalisé.
+	 * @return
+	 */
 	@Bean
 	public CustomErrorDecoder mCustomErrorDecoder() {
 		return new CustomErrorDecoder();

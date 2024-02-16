@@ -17,16 +17,15 @@
 	
 	<div class="wrapper d-flex flex-column justify-content-center">
 		<div class="infos mb-4">
-			<!--
-			<p class="mb-2"><span class="badge badge-dark" th:text="${evaluation}"></span></p>
-			-->
-			
 			<div class="d-flex justify-content-between">
 				<h2 th:text="${patient.name}" class="d-block font-weight-bold"></h2>
 				<p class="font-italic mt-2">Né le <span th:text="${patient.dob}"></span></p>
 			</div>
 			
-			<h2 th:text="${patient.forename}"></h2>
+			<div class="d-flex justify-content-between">
+				<h2 th:text="${patient.forename}"></h2>
+				<h2 th:text="${evaluation}"></h2>
+			</div>
 		</div>
 		
 		<form th:action="@{/patients/{id}/update(id=${patient.id})}" th:object="${patient}" method="post" class="mb-2">

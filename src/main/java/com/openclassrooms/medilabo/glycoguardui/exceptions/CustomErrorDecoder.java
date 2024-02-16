@@ -7,6 +7,9 @@ public class CustomErrorDecoder implements ErrorDecoder {
 
 	private final ErrorDecoder defaultErrorDecoder = new Default();
 	
+	/**
+	 * Permet de gérer quelques exceptions communes.
+	 */
 	@Override
 	public Exception decode(String invoker, Response response) {
 		
